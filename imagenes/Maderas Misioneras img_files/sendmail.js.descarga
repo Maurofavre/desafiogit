@@ -1,0 +1,31 @@
+(function(){
+	$('#contactanos').on('submit', function( e ){
+
+		e.preventDefault(); 
+		var formulario = $(this);
+		var dataSerializada = formulario.serialize();
+		$.ajax({
+			type: 'POST',
+			url : 'php/services/sendmailContacto.php',
+			dataType: 'json',
+			data: dataSerializada
+		})
+		.done(function( data ){
+
+		})
+		.fail(function(){
+
+		});
+
+		swal(
+	    	'Maderas Misioneras',
+	    	'Gracias por contactarnos, nuestros colaboradores se comunicarán con usted a la brevedad',
+	    	'success'
+		);		
+
+		$('#nombre').val('');
+		$('#email').val('');
+		$('#telefono').val('');
+		$('#comentarios').val('');
+	});
+})();
